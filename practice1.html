@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Practice 1 / Single-data</title>
+</head>
+<body>
+	<section ng-init="names=['Eldrich' , 'Al' , 'Brauz' , 'Juddy']">
+		<header>
+			<h1>Practice 1 / <small>Single-data</small></h1><hr>
+		</header>
+		<input type="text" ng-model="input" /> {{ input | uppercase }}
+		<ul ng-repeat="name in names | filter:input">
+			<li>{{ name }}</li>
+		</ul>
+	</section>
+	<a href="index.html">Contents</a>
+
+	<script src="js/angular.min.js"></script>
+</body>
+</html>
