@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<meta charset="UTF-8" >
+	<title>Practice 2 / Multi-data</title>
+</head>
+<body>
+	<header>
+		<h1>Practice 2 / <small>Multi-data</small></h1>
+	</header>
+	<section ng-init="persons=[{name:'Eldrich' , age:19} , {name:'Al' , age:20} , {name:'Brauz' , age:21} , {name:'Juddy' , age:16}]">
+		<input type="text" ng-model="input" /> {{ input | uppercase }}
+		<ul ng-repeat="data in persons | filter:input">
+			<li>{{ data.name + ' -- ' + data.age }}</li>
+		</ul>
+	</section>
+	<a href="index.html">Contents</a>
+
+	<script src="js/angular.min.js"></script>
+</body>
+</html>
