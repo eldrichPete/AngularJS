@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="myLab">
+<head>
+	<meta charset="UTF-8">
+	<title>Practice 5 / Factory</title>
+</head>
+<body>
+	<section ng-controller="Lab">
+		<header>
+			<h1>Practice 5 / <small>Factory</small></h1><hr>
+		</header>
+		<input type="text" ng-model="input" /> {{ input | uppercase }}
+		<ul ng-repeat="data in persons | filter:input">
+			<li>{{  data.name + ' -- ' + data.gender }}</li>
+		</ul>
+		<ul ng-repeat="n in names">
+			<li>{{ n }}</li>
+		</ul>
+
+		<br><br>
+		<article>
+			Name : <br><input type="text" ng-model="newData.name" /><br><br>
+			Gender : <br><input type="text" ng-model="newData.gender" /><br><br>
+			<button ng-click="newPerson()">Add Person</button>
+		</article>
+	</section>
+	<a href="index.html">Contents</a>
+
+	<script src="js/angular.min.js"></script>
+	<script>
+		var myLab = angular.module('myLab' , []);
+
+		myLab.factory('simpleFactory' , function()
+		{
+			var factory = {};
+			var persons = [
+				{	name : 'Eldrich' ,	gender : 'Male'	},
+				{	name : 'Al' ,	gender : 'Male'	},
+				{	name : 'Brauz' ,	gender : 'Male'	},
+				{	name : 'Juddy' , 	gender : 'Female'	}
+			];
+
+			factory.getPersons = function()
+			{
+				return persons;
+			};
+			return factory;
+		});
+		
+		myLab.controller('Lab' , function($scope , simpleFactory)
+		{
+			$scope.persons = simpleFactory.getPersons();
+
+			$scope.newPerson = function()
+			{
+				$scope.persons.push(
+					{	name : $scope.newData.name ,	gender : $scope.newData.gender  }
+				);
+			}
+		});
+
+	</script>
+</body>
+</html>
