@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="myLab">
+<head>
+	<meta charset="UTF-8">
+	<title>Practice 4 / push</title>
+</head>
+<body>
+	<section ng-controller="Lab">
+		<header>
+			<h1>Practice 4 / <small>Push</small></h1><hr>
+		</header>
+		<input type="text" ng-model="input" /> {{ input | uppercase }}
+		<ul ng-repeat="data in persons | filter:input">
+			<li>{{  data.name + ' -- ' + data.gender }}</li>
+		</ul>
+
+		<br><br>
+		<article>
+			Name : <br><input type="text" ng-model="newData.name" /><br><br>
+			Gender : <br><input type="text" ng-model="newData.gender" /><br><br>
+			<button ng-click="newPerson()">Add Person</button>
+		</article>
+	</section>
+	<a href="index.html">Contents</a>
+
+	<script src="js/angular.min.js"></script>
+	<script>
+		var myLab = angular.module('myLab' , []);
+		
+		myLab.controller('Lab' , function($scope)
+		{
+			$scope.persons = [
+				{
+					name : 'Eldrich' , 
+					gender : 'Male'
+				},
+				{
+					name : 'Al' ,
+					gender : 'Male'
+				},
+				{
+					name : 'Brauz' ,
+					gender : 'Male'
+				},
+				{
+					name : 'Juddy' , 
+					gender : 'Female'
+				}
+			];
+
+			$scope.newPerson = function()
+			{
+				$scope.persons.push(
+					{
+						name : $scope.newData.name ,
+						gender : $scope.newData.gender
+					}
+				);
+			}
+		});
+
+	</script>
+</body>
+</html>
